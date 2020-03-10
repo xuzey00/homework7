@@ -16,7 +16,17 @@ public class ArrayDictionaryTest {
     @Test
     public void remove() {
         // homework
-        assertTrue(false);  // place holder
+        int testSize = 5;
+        ArrayDictionary dict = new ArrayDictionary(testSize);
+        dict.add(2,82);
+        dict.add(3,2);
+        dict.remove(2);
+        assertEquals(1,dict.getCount());
+        dict.remove(3);
+        System.out.println(dict);
+        assertEquals(0,dict.getCount());
+
+
     }
 
     @Test

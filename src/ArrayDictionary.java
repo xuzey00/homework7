@@ -58,6 +58,12 @@ public class ArrayDictionary implements Dictionary {
     @Override
     public boolean remove(int key) {
         // homework
+        int hashedKey = hashFunction(key);
+        if (entries[hashedKey]!=null){
+            entries[hashedKey] = null;
+            count--;
+            return true;
+        }
         return false;
     }
 
