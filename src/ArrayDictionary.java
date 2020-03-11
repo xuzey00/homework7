@@ -72,7 +72,8 @@ public class ArrayDictionary implements Dictionary {
     @Override
     public boolean contains(int key) {
         // homework
-        return false;
+        int hashedKey = hashFunction(key);
+        return entries[hashedKey] != null;
     }
 
     // Return the entry value with the given key

@@ -25,13 +25,21 @@ public class ArrayDictionaryTest {
         dict.remove(3);
         System.out.println(dict);
         assertEquals(0,dict.getCount());
-
+        assertEquals(false,dict.contains(2));
 
     }
 
     @Test
     public void contains() {
         // homework
-        assertTrue(false);  // place holder
+        int testSize = 5;
+        ArrayDictionary dict = new ArrayDictionary(testSize);
+        for(int i = 0; i<testSize;i++){
+            dict.add(i,i);
+            //System.out.println(dict.contains(i));
+            assertTrue(dict.contains(i));
+        }
+
+        //assertTrue(false);  // place holder
     }
 }
