@@ -59,10 +59,26 @@ public class ArrayDictionary implements Dictionary {
     public boolean remove(int key) {
         // homework
         int hashedKey = hashFunction(key);
-        if (entries[hashedKey]!=null){
-            entries[hashedKey] = null;
-            count--;
-            return true;
+        if(getCount()==0){
+            return false;
+        }
+        if (entries[hashedKey]!=null && entries[hashedKey].next == null){
+                entries[hashedKey] = null;
+                count--;
+                return true;
+        }
+
+        KVEntry ptr = entries[hashedKey];
+        KVEntry ptr2;
+        while(ptr != null){
+            if(ptr.next.key == key){
+                ptr2 = ptr.next.next;
+                ptr.next = null;
+                ptr.next = ptr2;
+                count--;
+                return true;
+            }
+            ptr = ptr.next;
         }
         return false;
     }
@@ -72,8 +88,12 @@ public class ArrayDictionary implements Dictionary {
     @Override
     public boolean contains(int key) {
         // homework
-        int hashedKey = hashFunction(key);
-        return entries[hashedKey] != null;
+        if(!isEmpty()) {
+            int hashedKey = hashFunction(key);
+            //System.out.println(hashedKey);
+            return entries[hashedKey] != null;
+        }
+        return false;
     }
 
     // Return the entry value with the given key
@@ -81,6 +101,17 @@ public class ArrayDictionary implements Dictionary {
     @Override
     public Integer get(int key) {
         // NOT IMPLEMENTED
+        int hashedKey = hashFunction(key);
+        if (entries[hashedKey]!=null && entries[hashedKey].next == null){
+            return entries[hashedKey].value;
+        }
+        KVEntry ptr = entries[hashedKey];
+        while(ptr != null){
+            if(ptr.key == key){
+                return ptr.value;
+            }
+            ptr = ptr.next;
+        }
         return null;
     }
 
